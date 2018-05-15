@@ -7,6 +7,7 @@ import java.math.BigInteger;
  * @time 2018-5-13 下午3:17:31
  */
 public class Main05 {
+	//答案：196
 	public static void main(String[] args) {
 		int count=0;
 		for(int i=196;i<200;i++){
