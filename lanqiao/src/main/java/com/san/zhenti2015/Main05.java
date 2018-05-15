@@ -1,5 +1,5 @@
 package com.san.zhenti2015;
-
+import java.math.BigInteger;
 /**
  * 生成回文数
  * @description
@@ -8,7 +8,24 @@ package com.san.zhenti2015;
  */
 public class Main05 {
 	public static void main(String[] args) {
-		System.out.println(add("19"));
+		int count=0;
+		for(int i=196;i<200;i++){
+			//不是回文数字
+			if(!isHui(i+"")){
+				//相加
+				BigInteger n=add(i+"");
+				while(true){
+					if(isHui(n.toString())){
+						break;
+					}else{
+						n=add(n.toString());
+						count++;
+					}
+				}
+			}
+			System.out.println(count+"--"+i);
+			count=0;
+		}
 	}
 	//判断是否是回文数
 	public static boolean isHui(String str){
@@ -21,14 +38,18 @@ public class Main05 {
 		return true;
 	}
 	
-	//叠加
-	public static String add(String ss){
-		StringBuffer sb1=new StringBuffer(ss);
-		String ss2=sb1.reverse().toString();
-		String ss3="";
-		for(int i=0;i<ss.length();i++){
-			ss3=ss3+((int)(ss.charAt(i)-'0')+(int)(ss.charAt(i)-'0'));
+	//叠加（用大数处理）
+	public static BigInteger add(String str){
+		BigInteger big1=new BigInteger(str);
+		BigInteger temp=big1;
+		BigInteger ten=new BigInteger("10");
+		BigInteger big2=BigInteger.ZERO;
+		while(big1.compareTo(BigInteger.ZERO)>0){
+			 BigInteger n=big1.remainder(new BigInteger("10"));
+			 big2=big2.multiply(ten);
+			 big2=big2.add(n);
+			 big1=big1.divide(ten);
 		}
-		return ss3;
+		return big2.add(temp);
 	}
 }
