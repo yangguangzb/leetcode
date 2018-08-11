@@ -13,3 +13,7 @@ logs
 ############ eclipse ##########
 .classpath
 .project
+
+
+##### idea #####
+.idea
